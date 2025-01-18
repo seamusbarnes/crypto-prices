@@ -59,6 +59,8 @@ def fetch_price_data(symbol, interval=None):
     """
     Fetch price data from Binance.
 
+    API documentation: https://developers.binance.com/docs/derivatives/coin-margined-futures/market-data/Kline-Candlestick-Data
+
     Args:
         symbol (str): The trading pair symbol (e.g., BTCUSDT).
         interval (str): If provided, fetches kline data for the given interval.
