@@ -170,13 +170,14 @@ def print_prices(symbols, unit, wallet=None):
 
     total_value = 0
 
+    wallet = Wallet('wallet.json')
     for symbol in symbols:
         try:
             daily_open, _ = fetch_price_data(f"{symbol}{unit}", interval='1d')
             current_price = fetch_price_data(f"{symbol}{unit}")
             percent_change = ((current_price - daily_open) / daily_open) * 100
 
-            wallet_value = 0
+            wallet_value = wallet.get(symbol)
             if wallet:
                 amount = wallet.get(symbol)
                 wallet_value = amount * current_price
