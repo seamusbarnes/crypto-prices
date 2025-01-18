@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import requests
 
 def get_binance_price(symbol):
@@ -9,19 +7,23 @@ def get_binance_price(symbol):
 
     return data['price']
 
-# Example usage of the functions
-if __name__ == "__main__":
+def display_prices(symbols, unit):
+    align = {'left': 8, 'right': 15}
     
-    unit = 'USDT' 
-    symbols = ['BTC', 'ETH', 'LINK', 'DOT', 'ADA']
-
-    align_left = 8
-    align_right = 15
     print('\nPrices - Current')
-    header = f"{'Symbol'.ljust(align_left)} {'Price (USDT)'.rjust(align_right)}"
+    header = f"{'Symbol'.ljust(align['left'])} {'Price (USDT)'.rjust(align['right'])}"
     print(header)
     print('-' * len(header))
 
     for symbol in symbols:
         price = get_binance_price(f'{symbol}{unit}')
-        print(f"{symbol.ljust(align_left)} {f'${float(price):.2f}'.rjust(align_right)}")
+        print(f"{symbol.ljust(align['left'])} {f'${float(price):.2f}'.rjust(align['right'])}")
+
+    return
+
+if __name__ == "__main__":
+    
+    unit = 'USDT' 
+    symbols = ['BTC', 'ETH', 'LINK', 'DOT', 'ADA']
+
+    display_prices(symbols, unit)
